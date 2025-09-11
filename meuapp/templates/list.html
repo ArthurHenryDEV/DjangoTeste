@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>lista de pessoas</title>
+    </head>
+    <body>
+        {% for pessoa in pessoas %}
+        <h1>{{ pessoa.nome|upper }}</h1>
+        <ul>
+            <li>{{ pessoa.idade }}</li>
+            <li>{{ pessoa.email }}</li>
+        </ul>
+        {% endfor %}
+
+    </body>
+</html>

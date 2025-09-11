@@ -10,4 +10,3 @@ class Pessoa(models.Model):
         return self.nome
 
 
-# Create your models here.
