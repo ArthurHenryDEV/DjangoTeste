@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Pessoa
 from .forms import PessoaForm
+import requests
 
 def home(request):
     return render(request, 'home.html')
@@ -43,3 +44,14 @@ def atualizar_pessoa(request, pk):
         form = PessoaForm(instance=pessoa)
     return render(request, 'create.html', {'pessoa': form})
 
+
+#  Config API
+def consultaCep(request):
+    response = requests.get("https://viacep.com.br/ws/58046518/json/", verify=False)
+    dadosEndereco = response.json()
+    endereco = Pessoa.objects.create(
+        nome= dadosEndereco["logradouro"], #GAMBIARRA(!!!!)
+        idade = dadosEndereco["ibge"], #GAMBIARRA(!!!!)
+        email = "sivirino@gmail.com" #GAMBIARRA(!!!!)
+    )
+    return HttpResponse(dadosEndereco("logradouro"))
